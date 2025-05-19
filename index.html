@@ -59,14 +59,102 @@
             background-color: var(--color-4) !important;
         }
 
-        /* Carrusel rediseñado - indicadores arriba */
+        /* Separador con estrella */
+        .separator-container {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white; /* Añadimos fondo blanco */
+            padding: 1rem 0; /* Agregamos padding para dar más espacio */
+        }
+
+        .separator {
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .separator-container {
+                margin: 1.5rem 0;
+                padding: 0.75rem 0;
+            }
+        }
+
+        /* Logo responsivo con imagen en lugar de SVG */
+        .header-logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        /* Asegurar una transición más suave para la imagen y el contenedor */
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 0;
+            transition: height 0.3s ease, width 0.3s ease;
+            object-fit: cover;
+        }
+
+        .header-container {
+            transition: height 0.3s ease;
+        }
+
+        /* Efecto de encogimiento al hacer scroll */
+        .header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed; /* Asegura que el header permanezca fijo */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header.scrolled .logo-img {
+            height: 35px; /* Tamaño reducido del logo al hacer scroll */
+        }
+
+        .header.scrolled .header-container {
+            height: 3.5rem; /* Altura reducida del contenedor al hacer scroll */
+        }
+
+        @media (min-width: 768px) {
+            .logo-img {
+                height: 60px; /* Tamaño normal en pantallas más grandes */
+            }
+            
+            .header.scrolled .logo-img {
+                height: 40px; /* Tamaño reducido en pantallas más grandes al hacer scroll */
+            }
+        }
+
+        /* Modificar estas clases para asegurar que el header nunca se oculte */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000; /* Aumentar z-index para asegurar que siempre esté por encima */
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        /* Carrusel rediseñado con márgenes laterales */
         .carousel {
             position: relative;
             min-height: 300px;
             height: 60vh;
             max-height: 800px;
             overflow: hidden;
-            margin-top: 4rem;
+            margin-left: auto;    /* Añadir margen automático a la izquierda */
+            margin-right: auto;   /* Añadir margen automático a la derecha */
+            max-width: 90%;       /* Limitar el ancho al 90% de la pantalla */
+            border-radius: 8px;   /* Opcional: añadir bordes redondeados */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Opcional: añadir sombra para destacar */
         }
 
         @media (min-width: 768px) {
@@ -298,10 +386,12 @@
             margin-bottom: 1rem;
         }
 
-        /* Estilos responsivos de las tarjetas interactivas (flip cards) */
+        /* MEJORAS EN LAS FLIP CARDS - MAYOR ALTURA */
+
+        /* Contenedor principal con mayor altura */
         .flip-card {
             perspective: 1000px;
-            min-height: 320px;
+            min-height: 450px; /* Aumentado de 320px */
             height: 100%;
             display: flex;
             margin-bottom: 1.5rem;
@@ -309,20 +399,20 @@
 
         @media (min-width: 640px) {
             .flip-card {
-                min-height: 350px;
+                min-height: 480px; /* Aumentado de 350px */
                 margin-bottom: 0;
             }
         }
 
         @media (min-width: 768px) {
             .flip-card {
-                min-height: 380px;
+                min-height: 520px; /* Aumentado de 380px */
             }
         }
 
         @media (min-width: 1024px) {
             .flip-card {
-                min-height: 400px;
+                min-height: 550px; /* Aumentado de 400px */
             }
         }
 
@@ -375,17 +465,55 @@
                 padding: 1.5rem;
             }
         }
+
+        /* Mejoras en la imagen para aprovechar el espacio vertical adicional */
+        .flip-card-front img {
+            height: 200px; /* Aumentado de 48px (12rem) */
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Ajustes de espaciado para el contenido */
+        .flip-card-front, .flip-card-back {
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .flip-card-front, .flip-card-back {
+                padding: 1.75rem;
+            }
+        }
         
-        /* Mejorar la apariencia del scroll en navegadores modernos */
+        /* Mejorar la gestión del scroll para tarjetas con mucho contenido */
         .flip-card-front::-webkit-scrollbar, 
         .flip-card-back::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
         }
 
         .flip-card-front::-webkit-scrollbar-thumb, 
         .flip-card-back::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.2);
+            background-color: rgba(66, 95, 171, 0.3);
             border-radius: 10px;
+        }
+
+        .flip-card-front::-webkit-scrollbar-thumb:hover, 
+        .flip-card-back::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(66, 95, 171, 0.5);
+        }
+
+        /* Ajustar márgenes para mejorar el espaciado */
+        .flip-card-front h3, .flip-card-back h3 {
+            margin-bottom: 1rem;
+        }
+
+        .flip-card-front p, .flip-card-back p {
+            margin-bottom: 1rem;
+        }
+
+        .flip-card-front ul, .flip-card-back ul {
+            margin-bottom: 1.5rem;
         }
         
         /* Estilos adicionales para el menú móvil */
@@ -1118,10 +1246,10 @@
 <body class="antialiased bg-gray-50">
     <!-- Header -->
     <header class="header" id="header">
-        <div class="header-container">
-            <a href="#inicio" class="header-logo" aria-label="Ir a inicio">
-                REPÚBLICA DE LA IMPRO
-            </a>
+    <div class="header-container">
+        <a href="#inicio" class="header-logo" aria-label="Ir a inicio">
+            <img src="https://i.postimg.cc/k4bYs1WV/letrassvg-1.png" alt="República de la Impro - Federico Castelacci" class="logo-img">
+        </a>
             
             <nav class="header-nav">
                 <a href="#inicio" class="header-link">Inicio</a>
@@ -1158,10 +1286,10 @@
         <div class="carousel" aria-label="Galería de imágenes destacadas">
             <div class="carousel-inner">
                 <div class="carousel-item active" aria-label="Slide 1">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Descubre el arte de la improvisación" class="w-full h-full object-cover" loading="lazy">
+                    <img src="https://i.postimg.cc/J0C62NQp/REPUBLICARIE.png" alt="Descubre el arte de la improvisación" class="w-full h-full object-cover" loading="lazy">
                     <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white">Descubre la Improvisación</h2>
-                        <p class="subtitle text-white mb-6">Libera tu creatividad y aprende el arte de la improvisación teatral</p>
+                        <h2 class="title-xl text-white"> </h2>
+                        <p class="subtitle text-white mb-6"> </p>
                         <a href="#cursos" class="btn-primary">
                             Ver nuestros cursos
                             <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
@@ -1170,10 +1298,10 @@
                 </div>
                 
                 <div class="carousel-item" aria-label="Slide 2">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Cartelera de shows" class="w-full h-full object-cover" loading="lazy">
+                    <img src="https://i.postimg.cc/4yvLkYLs/pantomima.png" alt="Cartelera de shows" class="w-full h-full object-cover" loading="lazy">
                     <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white">Shows Semanales</h2>
-                        <p class="subtitle text-white mb-6">Disfruta de nuestros espectáculos de improvisación cada semana</p>
+                        <h2 class="title-xl text-white"> </h2>
+                        <p class="subtitle text-white mb-6"> </p>
                         <a href="#shows" class="btn-primary">
                             Ver cartelera
                             <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
@@ -1182,10 +1310,10 @@
                 </div>
                 
                 <div class="carousel-item" aria-label="Slide 3">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Quiénes somos" class="w-full h-full object-cover" loading="lazy">
+                    <img src="https://i.postimg.cc/NGRPrngS/IMPRONI-OS.png" alt="Quiénes somos" class="w-full h-full object-cover" loading="lazy">
                     <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white">Quiénes somos</h2>
-                        <p class="subtitle text-white mb-6">Descubre nuestra misión y valores</p>
+                        <h2 class="title-xl text-white"> </h2>
+                        <p class="subtitle text-white mb-6"> </p>
                         <a href="#nosotros" class="btn-primary">
                             Conócenos
                             <i class="fas fa-users ml-2" aria-hidden="true"></i>
@@ -1201,6 +1329,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Separador con estrella -->
+    <div class="separator-container">
+        <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+            <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            <g transform="translate(400, 25)">
+                <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+            </g>
+            <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+        </svg>
+    </div>
 
 
     <!-- Nosotros -->
@@ -1254,45 +1393,54 @@
                 
                 <!-- Profesor 3 -->
                 <div class="professor-card">
-                    <img src="https://i.postimg.cc/kGCPKTJq/Federico-Castelacci.jpg" alt="Carlos Rodríguez" class="object-cover" loading="lazy">
-                    <h4 class="text-lg font-bold text-gray-900 mt-2">Carlos Rodríguez</h4>
+                    <img src="https://i.postimg.cc/kGy3cWG8/Pablo-Boraquevich.jpg" alt="Pablo Boraquevich" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Pablo Boraquevich</h4>
                     <p class="text-blue-600">Profesor</p>
                     <p class="text-gray-600 mt-2">Especializado en técnicas de improvisación narrativa.</p>
                     
                     <!-- Overlay con información adicional -->    
                     <div class="info-overlay">
-                        <h4 class="text-lg font-bold mb-1">Carlos Rodríguez</h4>
+                        <h4 class="text-lg font-bold mb-1">Pablo Boraquevich</h4>
                         <p class="mb-3">Profesor</p>
                         <p class="text-sm">Con formación en teatro clásico y moderno, ha desarrollado un método propio de improvisación narrativa. Parte del equipo desde 2014 y director del área de formación avanzada.</p>
                         <div class="social-icons">
-                            <a href="#" aria-label="Instagram de Carlos Rodríguez"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn de Carlos Rodríguez"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" aria-label="Twitter de Carlos Rodríguez"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram de Pablo Boraquevich"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Pablo Boraquevich"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Pablo Boraquevich"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Profesor 4 -->
                 <div class="professor-card">
-                    <img src="https://i.postimg.cc/fW7NDQCL/Monica-Osben.jpg" alt="Laura Gómez" class="object-cover" loading="lazy">
-                    <h4 class="text-lg font-bold text-gray-900 mt-2">Laura Gómez</h4>
-                    <p class="text-blue-600">Profesora</p>
+                    <img src="https://i.postimg.cc/SNDbYLwb/Rodrigo-Castro.jpg" alt="Rodrigo Castro" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Rodrigo Castro</h4>
+                    <p class="text-blue-600">Profesor</p>
                     <p class="text-gray-600 mt-2">Experta en comedia física y clown.</p>
                     
                     <!-- Overlay con información adicional -->
                     <div class="info-overlay">
-                        <h4 class="text-lg font-bold mb-1">Laura Gómez</h4>
+                        <h4 class="text-lg font-bold mb-1">Rodrigo Castro</h4>
                         <p class="mb-3">Profesora</p>
                         <p class="text-sm">Formada en la Escuela Internacional de Teatro Físico en París. Ha trabajado con diversas compañías en Europa y América Latina. Se especializa en técnicas de clown e improvisación corporal.</p>
                         <div class="social-icons">
-                            <a href="#" aria-label="Instagram de Laura Gómez"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn de Laura Gómez"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" aria-label="Twitter de Laura Gómez"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram de Rodrigo Castro"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Rodrigo Castro"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Rodrigo Castro"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-
+        <!-- Separador con estrella -->
+        <div class="separator-container">
+            <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+                <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+                <g transform="translate(400, 25)">
+                    <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+                </g>
+                <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            </svg>
+        </div>
             <div class="mb-16">
                 <h3 class="text-xl md:text-2xl font-bold text-center text-gray-900 mb-6">Nuestros valores</h3>
                 
@@ -1341,6 +1489,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Separador con estrella -->
+    <div class="separator-container">
+        <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+            <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            <g transform="translate(400, 25)">
+                <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+            </g>
+            <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+        </svg>
+    </div>
 
     <!-- Cursos y Talleres -->
     <section id="cursos" class="section bg-gray-50">
@@ -1472,6 +1631,17 @@
         </div>
     </section>
 
+    <!-- Separador con estrella -->
+    <div class="separator-container">
+        <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+            <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            <g transform="translate(400, 25)">
+                <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+            </g>
+            <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+        </svg>
+    </div>
+
     <!-- Testimonios -->
     <section id="testimonios" class="section bg-white">
         <div class="max-w-7xl mx-auto">
@@ -1550,8 +1720,19 @@
             </div>
         </div>
     </section>
+
+    <!-- Separador con estrella -->
+    <div class="separator-container">
+        <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+            <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            <g transform="translate(400, 25)">
+                <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+            </g>
+            <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+        </svg>
+    </div>
     
-    <!-- Shows -->
+    <!-- Funciones -->
     <section id="shows" class="section bg-gray-50">
         <div class="max-w-7xl mx-auto">
             <h2 class="section-title">Funciones</h2>
@@ -1632,6 +1813,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Separador con estrella -->
+    <div class="separator-container">
+        <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+            <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            <g transform="translate(400, 25)">
+                <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+            </g>
+            <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+        </svg>
+    </div>
 
     <!-- Contacto -->
     <section id="contacto" class="section bg-white">
@@ -2069,30 +2261,6 @@
             });
         });
         
-        // Header hide/show on scroll
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
-        const scrollThreshold = 100;
-        
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > scrollThreshold) {
-                if (scrollTop > lastScrollTop) {
-                    // Scrolling down
-                    header.classList.add('hidden');
-                } else {
-                    // Scrolling up
-                    header.classList.remove('hidden');
-                }
-            } else {
-                // At the top
-                header.classList.remove('hidden');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-        
         // Lazy loading for images (fallback for browsers that don't support loading attribute)
         if ('loading' in HTMLImageElement.prototype) {
             // Browser supports the loading attribute
@@ -2110,6 +2278,80 @@
                 observer.observe(img);
             });
         }
+
+        // Función para hacer que el header sea fijo y la imagen se encoja durante el scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const headerImg = document.querySelector('.header .logo-img');
+            const headerContainer = document.querySelector('.header .header-container');
+            
+            // Tamaños iniciales para la transición suave
+            let imgInitialHeight = window.innerWidth >= 768 ? 60 : 50; // px - valores existentes en el CSS
+            let imgFinalHeight = window.innerWidth >= 768 ? 40 : 35; // px - valores existentes en el CSS
+            
+            // Punto en el que la imagen deja de encogerse
+            const scrollThreshold = 50; // px
+            
+            // Asegurarse de que siempre esté visible (no 'hidden')
+            header.classList.remove('hidden');
+            
+            // Función principal de scroll
+            function handleScroll() {
+                // Calcular posición de scroll actual
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Asegurarnos que el header nunca se oculta
+                if (header.classList.contains('hidden')) {
+                    header.classList.remove('hidden');
+                }
+                
+                // Si pasamos el umbral, aplicar clase scrolled
+                if (scrollY > scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    // Si estamos en el rango de transición suave (0-scrollThreshold)
+                    header.classList.remove('scrolled');
+                    
+                    // Calcular tamaño proporcional para la imagen basado en la posición de scroll
+                    const scrollPercentage = Math.min(scrollY / scrollThreshold, 1);
+                    const newImgHeight = imgInitialHeight - (scrollPercentage * (imgInitialHeight - imgFinalHeight));
+                    
+                    // Aplicar altura dinámica a la imagen
+                    if (headerImg) {
+                        headerImg.style.height = `${newImgHeight}px`;
+                    }
+                    
+                    // También podríamos ajustar gradualmente la altura del contenedor
+                    if (headerContainer) {
+                        const initialContainerHeight = 4; // rem (valor del CSS actual)
+                        const finalContainerHeight = 3.5; // rem (valor del CSS para .scrolled)
+                        const newContainerHeight = initialContainerHeight - 
+                            (scrollPercentage * (initialContainerHeight - finalContainerHeight));
+                        
+                        headerContainer.style.height = `${newContainerHeight}rem`;
+                    }
+                }
+                
+                // Si volvimos arriba del todo, resetear estilos inline
+                if (scrollY === 0) {
+                    if (headerImg) headerImg.style.height = '';
+                    if (headerContainer) headerContainer.style.height = '';
+                }
+            }
+            
+            // Registrar evento de scroll
+            window.addEventListener('scroll', handleScroll);
+            
+            // Ejecutar una vez al cargar para establecer el estado inicial
+            handleScroll();
+            
+            // Actualizar valores al cambiar el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                imgInitialHeight = window.innerWidth >= 768 ? 60 : 50;
+                imgFinalHeight = window.innerWidth >= 768 ? 40 : 35;
+                handleScroll();
+            });
+        });
     </script>
 </body>
 </html>
