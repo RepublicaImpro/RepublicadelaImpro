@@ -143,19 +143,20 @@
             width: 100%;
         }
         
-        /* Carrusel rediseñado con márgenes laterales */
+        /* Carrusel rediseñado con enfoque en mostrar imágenes completas */
         .carousel {
             position: relative;
-            min-height: 300px;
-            height: 60vh;
-            max-height: 800px;
+            height: auto; /* Altura automática */
+            min-height: 300px; /* Altura mínima */
+            max-height: 80vh; /* Altura máxima relativa */
             overflow: hidden;
-            margin-left: auto;    /* Añadir margen automático a la izquierda */
-            margin-right: auto;   /* Añadir margen automático a la derecha */
-            max-width: 90%;       /* Limitar el ancho al 90% de la pantalla */
-            border-radius: 8px;   /* Opcional: añadir bordes redondeados */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Opcional: añadir sombra para destacar */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
 
         @media (min-width: 768px) {
             .carousel {
@@ -168,6 +169,13 @@
             position: relative;
             width: 100%;
             height: 100%;
+            aspect-ratio: 16/9; /* O la proporción que prefieras, por ejemplo 3/2, 4/3, etc. */
+        }
+
+        @media (max-width: 767px) {
+            .carousel-inner {
+                aspect-ratio: 1/1; /* Proporción cuadrada para móviles, o 4/5, 3/4, etc. */
+            }
         }
 
         .carousel-item {
@@ -178,6 +186,9 @@
             height: 100%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centrado vertical */
         }
 
         .carousel-item.active {
@@ -187,24 +198,31 @@
 
         .carousel-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; /* Altura automática para mantener proporción */
+            max-height: 75vh; /* Límite máximo relativo para evitar imágenes enormes */
+            object-fit: contain; /* Mostrar imagen completa sin recortes */
+            margin: 0 auto; /* Centrado horizontal */
         }
 
         .carousel-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            position: relative; /* Cambiamos de absolute a relative */
+            bottom: auto;
+            left: auto;
             width: 100%;
             background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             color: white;
             z-index: 2;
+            margin-top: -0.5rem; /* Solapamiento ligero con la imagen */
         }
 
         @media (min-width: 768px) {
+            .carousel {
+                min-height: 400px;
+            }
+            
             .carousel-content {
-                padding: 3rem 2rem;
+                padding: 2rem 1.5rem;
             }
         }
 
@@ -1286,39 +1304,15 @@
         <div class="carousel" aria-label="Galería de imágenes destacadas">
             <div class="carousel-inner">
                 <div class="carousel-item active" aria-label="Slide 1">
-                    <img src="https://i.postimg.cc/J0C62NQp/REPUBLICARIE.png" alt="Descubre el arte de la improvisación" class="w-full h-full object-cover" loading="lazy">
-                    <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white"> </h2>
-                        <p class="subtitle text-white mb-6"> </p>
-                        <a href="#cursos" class="btn-primary">
-                            Ver nuestros cursos
-                            <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                    <img src="https://i.postimg.cc/J0C62NQp/REPUBLICARIE.png" alt="Descubre el arte de la improvisación" loading="lazy">
                 </div>
                 
-                <div class="carousel-item" aria-label="Slide 2">
-                    <img src="https://i.postimg.cc/4yvLkYLs/pantomima.png" alt="Cartelera de shows" class="w-full h-full object-cover" loading="lazy">
-                    <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white"> </h2>
-                        <p class="subtitle text-white mb-6"> </p>
-                        <a href="#shows" class="btn-primary">
-                            Ver cartelera
-                            <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <div class="carousel-item active" aria-label="Slide 2">
+                    <img src="https://i.postimg.cc/4yvLkYLs/pantomima.png" alt="Descubre el arte de la improvisación" loading="lazy">
                 </div>
                 
-                <div class="carousel-item" aria-label="Slide 3">
-                    <img src="https://i.postimg.cc/NGRPrngS/IMPRONI-OS.png" alt="Quiénes somos" class="w-full h-full object-cover" loading="lazy">
-                    <div class="carousel-content text-center">
-                        <h2 class="title-xl text-white"> </h2>
-                        <p class="subtitle text-white mb-6"> </p>
-                        <a href="#nosotros" class="btn-primary">
-                            Conócenos
-                            <i class="fas fa-users ml-2" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                <div class="carousel-item active" aria-label="Slide 3">
+                    <img src="https://i.postimg.cc/NGRPrngS/IMPRONI-OS.png" alt="Descubre el arte de la improvisación" loading="lazy">
                 </div>
             </div>
 
