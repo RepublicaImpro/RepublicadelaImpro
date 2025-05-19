@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/playfair-display@3.3.1/index.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fontsource/open-sans@4.5.14/index.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fontsource/montserrat@4.5.14/index.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -29,12 +30,14 @@
 
         /* Tipografías según manual de marca */
         body {
-            font-family: 'Alternate Gothic'; /* Alternativa web a Alternate Gothic */
-            color: #000; /* Negro para textos según manual */
+            font-family: 'Montserrat', 'Open Sans', sans-serif; /* Alternativa web más compatible */
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'AVENIR NEXT HEAVY'; /* Alternativa web a Avenir Next */
+            font-family: 'Playfair Display', serif; /* Alternativa web más compatible */
             font-weight: 700; 
             color: var(--color-2); /* Color azul principal para títulos según manual */
         }
@@ -57,13 +60,20 @@
         }
 
         /* Carrusel rediseñado - indicadores arriba */
-        /* Carrusel con imágenes como etiquetas img */
         .carousel {
             position: relative;
-            min-height: 400px;
-            height: 100vh;
+            min-height: 300px;
+            height: 60vh;
             max-height: 800px;
             overflow: hidden;
+            margin-top: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .carousel {
+                height: 80vh;
+                min-height: 400px;
+            }
         }
 
         .carousel-inner {
@@ -93,10 +103,27 @@
             object-fit: cover;
         }
 
+        .carousel-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem 1rem;
+            color: white;
+            z-index: 2;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-content {
+                padding: 3rem 2rem;
+            }
+        }
+
         /* Mantener los indicadores en su posición */
         .carousel-indicators {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -104,45 +131,61 @@
         }
 
         .carousel-indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background-color: var(--color-3);
+            background-color: rgba(255,255,255,0.5);
             margin: 0 5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid white;
-            box-shadow: 0 0 4px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 0 4px rgba(0,0,0,0.1);
+        }
+
+        @media (min-width: 768px) {
+            .carousel-indicator {
+                width: 12px;
+                height: 12px;
+                margin: 0 6px;
+            }
         }
 
         .carousel-indicator.active {
-            background-color: var(--color-4);
+            background-color: white;
             transform: scale(1.2);
         }
         
         /* Clases para tamaños de título según manual */
         .title-xl {
-            font-size: 2.5rem;
-            line-height: 1.1;
+            font-size: 2rem;
+            line-height: 1.2;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         @media (min-width: 768px) {
             .title-xl {
-                font-size: 3.5rem;
+                font-size: 3rem;
+                margin-bottom: 1rem;
             }
         }
 
         @media (min-width: 1024px) {
             .title-xl {
-                font-size: 4.5rem;
+                font-size: 4rem;
             }
         }
 
         .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
         }
         
         /* Botones según manual */
@@ -150,24 +193,103 @@
             display: inline-block;
             background-color: var(--color-2);
             color: white;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            padding: 0.75rem 1.25rem;
             border-radius: 4px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 768px) {
+            .btn-primary {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
         }
 
         .btn-primary:hover {
             background-color: var(--color-4);
             transform: translateY(-2px);
         }
+        
+        .btn-secondary {
+            display: inline-block;
+            background-color: var(--color-4);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.25rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        @media (min-width: 768px) {
+            .btn-secondary {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        .btn-secondary:hover {
+            background-color: #a03f20;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--color-2);
+            font-weight: 600;
+            padding: 0.75rem 1.25rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            border: 2px solid var(--color-2);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        @media (min-width: 768px) {
+            .btn-outline {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-2);
+            color: white;
+            transform: translateY(-2px);
+        }
 
         /* Estrella como elemento gráfico */
         .star-graphic {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 1rem;
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .star-graphic {
+                width: 40px;
+                height: 40px;
+                margin: 0 auto 1rem;
+            }
         }
 
         .star-graphic-container {
@@ -179,18 +301,26 @@
         /* Estilos responsivos de las tarjetas interactivas (flip cards) */
         .flip-card {
             perspective: 1000px;
-            min-height: 350px; /* Altura base */
-            height: 100%; /* Ocupar el espacio disponible */
-            display: flex; /* Asegurar que el contenido se distribuya correctamente */
+            min-height: 320px;
+            height: 100%;
+            display: flex;
+            margin-bottom: 1.5rem;
         }
 
         @media (min-width: 640px) {
+            .flip-card {
+                min-height: 350px;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 768px) {
             .flip-card {
                 min-height: 380px;
             }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .flip-card {
                 min-height: 400px;
             }
@@ -202,6 +332,8 @@
             height: 100%;
             transition: transform 0.8s;
             transform-style: preserve-3d;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .flip-card.flipped .flip-card-inner {
@@ -214,34 +346,36 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* Permite scroll vertical si el contenido es muy largo */
-            padding: 1.5rem;
+            overflow-y: auto;
         }
 
         .flip-card-front {
-            padding: 1.5rem;
+            background-color: white;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .flip-card-front {
+                padding: 1.5rem;
+            }
         }
         
         .flip-card-back {
+            background-color: #f9f9f9;
             transform: rotateY(180deg);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
         
-        .flip-card {
-            perspective: 1000px;
-            min-height: 350px;
-            max-height: 500px; /* Altura máxima */
+        @media (min-width: 768px) {
+            .flip-card-back {
+                padding: 1.5rem;
+            }
         }
-
-        .flip-card-front, .flip-card-back {
-            overflow-y: auto; /* Añadir scroll solo cuando sea necesario */
-            max-height: 100%; /* Limitar al contenedor */
-        }
-
+        
         /* Mejorar la apariencia del scroll en navegadores modernos */
         .flip-card-front::-webkit-scrollbar, 
         .flip-card-back::-webkit-scrollbar {
@@ -256,28 +390,69 @@
         
         /* Estilos adicionales para el menú móvil */
         .mobile-menu {
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateY(-10px);
             opacity: 0;
+            visibility: hidden;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
         }
 
         .mobile-menu.active {
-            max-height: 500px; /* Ajustar según el contenido */
+            transform: translateY(0);
             opacity: 1;
+            visibility: visible;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #4a5568;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .menu-item:hover,
+        .menu-item:focus {
+            background-color: #f9fafb;
+            color: var(--color-2);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
         }
 
         /* Mejoras para formularios en pantallas pequeñas */
-        @media (max-width: 640px) {
-            input, textarea, select {
-                font-size: 16px !important; /* Prevent iOS zoom */
-                padding: 0.75rem !important;
-            }
-
-            .contact-form-section {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            background-color: white;
+            transition: all 0.2s ease;
+            font-size: 16px; /* Prevent iOS zoom */
+        }
+        
+        input:focus, 
+        textarea:focus, 
+        select:focus {
+            outline: none;
+            border-color: var(--color-2);
+            box-shadow: 0 0 0 3px rgba(66, 95, 171, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #4a5568;
         }
 
         /* Estilos de las tarjetas de testimonios */
@@ -285,22 +460,35 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Animaciones suaves para interacciones */
-        .btn-transition {
-            transition: all 0.3s ease;
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-
-        /* Espaciado mejorado del pie de página en móviles */
-        @media (max-width: 768px) {
-            .footer-section {
-                margin-bottom: 2rem;
+        
+        .testimonial-content {
+            flex-grow: 1;
+            padding: 1.25rem;
+        }
+        
+        @media (min-width: 768px) {
+            .testimonial-content {
+                padding: 1.5rem;
             }
-
-            .footer-links {
-                margin-bottom: 1rem;
-            }
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            background-color: #f9fafb;
+            border-top: 1px solid #f0f0f0;
         }
 
         /* Mejoras de accesibilidad para estados de foco */
@@ -308,7 +496,7 @@
             outline: 2px solid var(--color-2);
             outline-offset: 2px;
         }
-
+        
         /* Indicadores de error en el formulario */
         .input-error {
             border-color: var(--color-4) !important;
@@ -354,6 +542,8 @@
 
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* === EFECTO EXPANDIBLE PARA PROFESORES === */
@@ -361,10 +551,22 @@
           position: relative;
           overflow: hidden;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 0.5rem;
+          background-color: #f9fafb;
+          padding: 1.5rem;
+          text-align: center;
+          height: 100%;
         }
 
         .professor-card img {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin: 0 auto 1rem;
           transition: transform 0.3s ease, filter 0.3s ease;
+          border: 2px solid white;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .professor-card .info-overlay {
@@ -373,33 +575,56 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: #c0d3e9; /* var(--color-2) con opacidad */
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color: rgba(66, 95, 171, 0.9);
           opacity: 0;
           transform: translateY(100%);
           transition: opacity 0.3s ease, transform 0.3s ease;
-          padding: 1rem;
+          padding: 1.5rem;
           color: white;
-          text-align: center;
+          border-radius: 0.5rem;
         }
 
         .professor-card:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-          z-index: 10;
+          transform: translateY(-5px);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .professor-card:hover img {
-          transform: scale(1.1);
-          filter: blur(1px);
+          transform: scale(1.05);
         }
 
         .professor-card:hover .info-overlay {
           opacity: 1;
           transform: translateY(0);
+        }
+        
+        .professor-card .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.75rem;
+        }
+        
+        .professor-card .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            margin: 0 0.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .professor-card .social-icons a:hover {
+            background-color: white;
+            color: var(--color-2);
+            transform: scale(1.1);
         }
 
         /* === EFECTO EXPANDIBLE PARA NUESTROS VALORES === */
@@ -410,11 +635,13 @@
           border-radius: 0.5rem;
           padding: 1.5rem;
           background-color: white;
+          text-align: center;
+          height: 100%;
         }
 
         .valores-card .icon-container {
-          width: 80px;
-          height: 80px;
+          width: 70px;
+          height: 70px;
           border-radius: 50%;
           margin: 0 auto 1rem auto;
           display: flex;
@@ -425,7 +652,7 @@
         }
 
         .valores-card .icon-container i {
-          font-size: 2rem;
+          font-size: 1.75rem;
           color: var(--color-2);
           transition: color 0.3s ease;
         }
@@ -435,81 +662,507 @@
         }
 
         .valores-card:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .valores-card:hover .icon-container {
-          transform: scale(1.2);
+          transform: scale(1.1);
           background-color: var(--color-2);
         }
 
         .valores-card:hover .icon-container i {
           color: white;
         }
-
-        .valores-card:hover .valor-content {
-          transform: translateY(5px);
+        
+        /* Shows responsivos */
+        .show-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .show-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .show-card-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .show-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .show-card:hover .show-card-img img {
+            transform: scale(1.05);
+        }
+        
+        .show-card-content {
+            padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .show-card-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        .show-card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+        }
+        
+        /* Sección general */
+        .section {
+            padding: 3rem 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section {
+                padding: 5rem 2rem;
+            }
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--color-2);
+        }
+        
+        @media (min-width: 640px) {
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section-title {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .section-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 auto 2rem;
+            max-width: 800px;
+            text-align: center;
+            color: #4a5568;
+        }
+        
+        @media (min-width: 640px) {
+            .section-description {
+                font-size: 1.125rem;
+                margin-bottom: 2.5rem;
+            }
+        }
+        
+        /* Header fijo con mayor accesibilidad */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+        
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+            padding: 0 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+            .header-container {
+                padding: 0 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .header-container {
+                padding: 0 2rem;
+            }
+        }
+        
+        .header-logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-2);
+            text-decoration: none;
+        }
+        
+        @media (min-width: 768px) {
+            .header-logo {
+                font-size: 1.5rem;
+            }
+        }
+        
+        .header-nav {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .header-nav {
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+            }
+        }
+        
+        .header-link {
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .header-link:hover,
+        .header-link:focus {
+            color: var(--color-2);
+        }
+        
+        .mobile-menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.375rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .mobile-menu-button:hover,
+        .mobile-menu-button:focus {
+            background-color: #f9fafb;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-menu-button {
+                display: none;
+            }
+        }
+        
+        /* Footer moderno y responsive */
+        .footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 3rem 1rem 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .footer {
+                padding: 4rem 1.5rem 2rem;
+            }
+        }
+        
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .footer-column-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-link {
+            color: #e2e8f0;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .footer-link:hover,
+        .footer-link:focus {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .footer-divider {
+            height: 1px;
+            background-color: #4a5568;
+            margin: 2rem 0;
+        }
+        
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+        
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: #cbd5e0;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-copyright {
+                margin-bottom: 0;
+            }
+        }
+        
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-bottom-link {
+            font-size: 0.875rem;
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-bottom-link:hover,
+        .footer-bottom-link:focus {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 1rem;
+            gap: 0.75rem;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #4a5568;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover,
+        .social-icon:focus {
+            background-color: var(--color-2);
+            transform: translateY(-2px);
+        }
+        
+        /* Optimización para impresión y PDF */
+        @media print {
+            html, body {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .header {
+                position: static;
+                box-shadow: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            
+            .mobile-menu-button {
+                display: none;
+            }
+            
+            .carousel {
+                height: auto;
+                min-height: auto;
+            }
+            
+            .carousel-item {
+                position: static;
+                opacity: 1;
+            }
+            
+            .carousel-item:not(.active) {
+                display: none;
+            }
+            
+            .carousel-indicators {
+                display: none;
+            }
+            
+            .flip-card {
+                perspective: none;
+            }
+            
+            .flip-card-inner {
+                transform-style: flat;
+            }
+            
+            .flip-card.flipped .flip-card-inner {
+                transform: none;
+            }
+            
+            .flip-card-front {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                height: auto;
+            }
+            
+            .flip-card-back {
+                display: none;
+            }
+            
+            .flip-card.flipped .flip-card-front {
+                display: none;
+            }
+            
+            .flip-card.flipped .flip-card-back {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                height: auto;
+                display: block;
+            }
+            
+            .professor-card .info-overlay {
+                position: static;
+                opacity: 1;
+                transform: none;
+                background-color: #f9fafb;
+                color: #2d3748;
+                padding: 1rem 0 0 0;
+            }
+            
+            input, textarea, select, button {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            a {
+                text-decoration: none !important;
+            }
+            
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
 
 <body class="antialiased bg-gray-50">
-    <nav class="bg-white shadow-md fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="#inicio" aria-label="Ir a inicio">
-                            <h1 class="text-xl sm:text-3xl font-bold --color-2">REPÚBLICA DE LA IMPRO</h1>
-                        </a>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
-                    <a href="#inicio" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Inicio</a>
-                    <a href="#cursos" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Cursos</a>
-                    <a href="#shows" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Shows</a>
-                    <a href="#nosotros" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Nosotros</a>
-                    <a href="#testimonios" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Testimonios</a>
-                    <a href="#contacto" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-xl font-medium">Contacto</a>
-                </div>
-                <div class="flex md:hidden items-center">
-                    <button
-                        type="button"
-                        id="mobile-menu-button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
-                        aria-expanded="false"
-                        aria-controls="mobile-menu"
-                        aria-label="Abrir menú de navegación">
-                        <span class="sr-only">Abrir menú</span>
-                        <i class="fas fa-bars" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#inicio" class="header-logo" aria-label="Ir a inicio">
+                REPÚBLICA DE LA IMPRO
+            </a>
+            
+            <nav class="header-nav">
+                <a href="#inicio" class="header-link">Inicio</a>
+                <a href="#cursos" class="header-link">Cursos</a>
+                <a href="#shows" class="header-link">Shows</a>
+                <a href="#nosotros" class="header-link">Nosotros</a>
+                <a href="#testimonios" class="header-link">Testimonios</a>
+                <a href="#contacto" class="header-link">Contacto</a>
+            </nav>
+            
+            <button
+                type="button"
+                id="mobile-menu-button"
+                class="mobile-menu-button"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+                aria-label="Abrir menú de navegación">
+                <i class="fas fa-bars text-gray-600" aria-hidden="true"></i>
+            </button>
         </div>
-
-        <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#inicio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Inicio</a>
-                <a href="#cursos" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Cursos</a>
-                <a href="#shows" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Shows</a>
-                <a href="#nosotros" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Nosotros</a>
-                <a href="#testimonios" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Testimonios</a>
-                <a href="#contacto" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50">Contacto</a>
-            </div>
+        
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <a href="#inicio" class="menu-item">Inicio</a>
+            <a href="#cursos" class="menu-item">Cursos</a>
+            <a href="#shows" class="menu-item">Shows</a>
+            <a href="#nosotros" class="menu-item">Nosotros</a>
+            <a href="#testimonios" class="menu-item">Testimonios</a>
+            <a href="#contacto" class="menu-item">Contacto</a>
         </div>
-    </nav>
+    </header>
 
+    <!-- Hero Carousel -->
     <section id="inicio" class="pt-16">
         <div class="carousel" aria-label="Galería de imágenes destacadas">
             <div class="carousel-inner">
-                
                 <div class="carousel-item active" aria-label="Slide 1">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Descubre el arte de la improvisación" class="w-full h-full object-cover absolute">
-                    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 pt-96">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-500 mb-4"></h2>
-                        <p class="text-xl sm:text-2xl md:text-3xl text-blue-600 mb-6 sm:mb-8"></p>
-                        <a href="#cursos" class="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Descubre el arte de la improvisación" class="w-full h-full object-cover" loading="lazy">
+                    <div class="carousel-content text-center">
+                        <h2 class="title-xl text-white">Descubre la Improvisación</h2>
+                        <p class="subtitle text-white mb-6">Libera tu creatividad y aprende el arte de la improvisación teatral</p>
+                        <a href="#cursos" class="btn-primary">
                             Ver nuestros cursos
                             <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
                         </a>
@@ -517,11 +1170,11 @@
                 </div>
                 
                 <div class="carousel-item" aria-label="Slide 2">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Cartelera de shows" class="w-full h-full object-cover absolute">
-                    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 pt-96">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-500 mb-4"></h2>
-                        <p class="text-xl sm:text-2xl md:text-3xl text-blue-600 mb-6 sm:mb-8"></p>
-                        <a href="#shows" class="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Cartelera de shows" class="w-full h-full object-cover" loading="lazy">
+                    <div class="carousel-content text-center">
+                        <h2 class="title-xl text-white">Shows Semanales</h2>
+                        <p class="subtitle text-white mb-6">Disfruta de nuestros espectáculos de improvisación cada semana</p>
+                        <a href="#shows" class="btn-primary">
                             Ver cartelera
                             <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
                         </a>
@@ -529,11 +1182,11 @@
                 </div>
                 
                 <div class="carousel-item" aria-label="Slide 3">
-                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Quiénes somos" class="w-full h-full object-cover absolute">
-                    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 pt-96">
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-500 mb-4">Quiénes somos</h2>
-                        <p class="text-xl sm:text-2xl md:text-3xl text-blue-600 mb-6 sm:mb-8">Descubre nuestra misión y valores</p>
-                        <a href="#nosotros" class="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                    <img src="https://i.postimg.cc/5NxMtKKm/Carrusel1.jpg" alt="Quiénes somos" class="w-full h-full object-cover" loading="lazy">
+                    <div class="carousel-content text-center">
+                        <h2 class="title-xl text-white">Quiénes somos</h2>
+                        <p class="subtitle text-white mb-6">Descubre nuestra misión y valores</p>
+                        <a href="#nosotros" class="btn-primary">
                             Conócenos
                             <i class="fas fa-users ml-2" aria-hidden="true"></i>
                         </a>
@@ -549,31 +1202,30 @@
         </div>
     </section>
 
-    <section id="cursos" class="py-12 sm:py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-6xl sm:text-6xl md:text-6xl font-heavy --color-2 mb-4">CURSOS Y TALLERES</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Descubre nuestra oferta formativa y comienza tu viaje en el mundo de la improvisación teatral.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Cursos y Talleres -->
+    <section id="cursos" class="section bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title">Cursos y Talleres</h2>
+            <p class="section-description">Descubre nuestra oferta formativa y comienza tu viaje en el mundo de la improvisación teatral.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Tarjeta 1: Impro Nivel 1 -->
-                <div class="flip-card h-full">
-                    <div class="flip-card-inner h-full">
-                        <div class="flip-card-front bg-white p-4 sm:p-6 flex flex-col h-full">
-                            <img src="https://placedog.net/400/200" alt="Perrito" class="w-full h-48 object-cover rounded-md mb-4" />
-                            <div class="bg-blue-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4">Principiantes</div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://placedog.net/400/200" alt="Curso de improvisación nivel 1" class="w-full h-48 object-cover rounded-md mb-4" loading="lazy">
+                            <div class="bg-blue-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4 inline-block">Principiantes</div>
                             <h3 class="text-xl font-bold text-gray-900 mb-2">Impro Nivel 1</h3>
                             <p class="text-gray-600 mb-4">El curso perfecto para iniciarte en la improvisación. Aprenderás los fundamentos y técnicas básicas.</p>
                             <div class="mt-auto">
                                 <p class="text-sm text-gray-500">Duración: 8 semanas</p>
                                 <p class="text-sm text-gray-500 mb-4">Inicio: 15 de mayo, 2025</p>
-                                <button class="flip-card-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Más información sobre Impro Nivel 1">
+                                <button class="flip-card-btn btn-primary w-full" aria-label="Más información sobre Impro Nivel 1">
                                     Más información
                                 </button>
                             </div>
                         </div>
-                        <div class="flip-card-back bg-gray-100 h-full">
+                        <div class="flip-card-back">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Impro Nivel 1 - Detalles</h3>
                             <p class="text-gray-600 mb-4">Este curso está diseñado para personas sin experiencia previa. Aprenderás:</p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -583,36 +1235,37 @@
                                 <li>Construcción de escenas</li>
                                 <li>Trabajo en equipo y confianza</li>
                             </ul>
-                            <p class="text-xl font-bold text-gray-500 mb-2">Cuota mensual $48.000</p>
+                            <p class="text-xl font-bold text-gray-900 mb-2">$48.000 / mes</p>
                             <p class="text-sm text-gray-500 mb-4">Horarios: Lunes y miércoles de 19:00 a 21:00</p>
                             <div class="mt-auto">
-                                <a href="#contacto" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mb-2 btn-transition inline-block text-center">
+                                <a href="#contacto" class="btn-secondary w-full mb-2 block">
                                     Inscríbeme
                                 </a>
-                                <button class="flip-card-btn w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Volver a información resumida">
+                                <button class="flip-card-btn btn-outline w-full" aria-label="Volver a información resumida">
                                     Volver
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <!-- Tarjeta 2: Impro Nivel 2 -->
-                <div class="flip-card h-full">
-                    <div class="flip-card-inner h-full">
-                        <div class="flip-card-front bg-white p-4 sm:p-6 flex flex-col flex-full">
-                            <img src="https://placedog.net/400/200" alt="Perrito" class="w-full h-48 object-cover rounded-md mb-4">
-                            <div class="bg-green-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4">Intermedio</div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://placedog.net/400/200" alt="Curso de improvisación nivel 2" class="w-full h-48 object-cover rounded-md mb-4" loading="lazy">
+                            <div class="bg-green-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4 inline-block">Intermedio</div>
                             <h3 class="text-xl font-bold text-gray-900 mb-2">Impro Nivel 2</h3>
                             <p class="text-gray-600 mb-4">Profundiza en el arte de la improvisación y desarrolla habilidades más avanzadas.</p>
                             <div class="mt-auto">
                                 <p class="text-sm text-gray-500">Duración: 10 semanas</p>
                                 <p class="text-sm text-gray-500 mb-4">Inicio: 1 de junio, 2025</p>
-                                <button class="flip-card-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Más información sobre Impro Nivel 2">
+                                <button class="flip-card-btn btn-primary w-full" aria-label="Más información sobre Impro Nivel 2">
                                     Más información
                                 </button>
                             </div>
                         </div>
-                        <div class="flip-card-back bg-gray-100 h-full">
+                        <div class="flip-card-back">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Impro Nivel 2 - Detalles</h3>
                             <p class="text-gray-600 mb-4">Para alumnos que ya han completado el Nivel 1 o tienen experiencia previa:</p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -622,36 +1275,37 @@
                                 <li>Formatos de improvisación</li>
                                 <li>Presencia escénica</li>
                             </ul>
-                            <p class="text-xl font-bold text-gray-500 mb-2">Cuota mensual $48.000</p>
+                            <p class="text-xl font-bold text-gray-900 mb-2">$48.000 / mes</p>
                             <p class="text-sm text-gray-500 mb-4">Horarios: Martes y jueves de 19:00 a 21:30</p>
                             <div class="mt-auto">
-                                <a href="#contacto" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mb-2 btn-transition inline-block text-center">
+                                <a href="#contacto" class="btn-secondary w-full mb-2 block">
                                     Inscríbeme
                                 </a>
-                                <button class="flip-card-btn w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Volver a información resumida">
+                                <button class="flip-card-btn btn-outline w-full" aria-label="Volver a información resumida">
                                     Volver
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <!-- Tarjeta 3: Impro Musical -->
-                <div class="flip-card h-full">
-                    <div class="flip-card-inner h-full">
-                        <div class="flip-card-front bg-white p-4 sm:p-6 flex flex-col h-full">
-                            <img src="https://placedog.net/400/200" alt="Perrito" class="w-full h-48 object-cover rounded-md mb-4">
-                            <div class="bg-purple-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4">Especialización</div>
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="https://placedog.net/400/200" alt="Curso de improvisación musical" class="w-full h-48 object-cover rounded-md mb-4" loading="lazy">
+                            <div class="bg-purple-600 text-white text-xs font-bold uppercase px-2 py-1 rounded-full self-start mb-4 inline-block">Especialización</div>
                             <h3 class="text-xl font-bold text-gray-900 mb-2">Impro Musical</h3>
                             <p class="text-gray-600 mb-4">Aprende a combinar improvisación teatral con elementos musicales para crear experiencias únicas.</p>
                             <div class="mt-auto">
                                 <p class="text-sm text-gray-500">Duración: 8 semanas</p>
                                 <p class="text-sm text-gray-500 mb-4">Inicio: 10 de junio, 2025</p>
-                                <button class="flip-card-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Más información sobre Impro Musical">
+                                <button class="flip-card-btn btn-primary w-full" aria-label="Más información sobre Impro Musical">
                                     Más información
                                 </button>
                             </div>
                         </div>
-                        <div class="flip-card-back bg-gray-100 h-full">
+                        <div class="flip-card-back">
                             <h3 class="text-xl font-bold text-gray-900 mb-4">Impro Musical - Detalles</h3>
                             <p class="text-gray-600 mb-4">Un curso especializado para quienes desean explorar la improvisación musical:</p>
                             <ul class="list-disc list-inside text-gray-600 mb-4">
@@ -661,13 +1315,13 @@
                                 <li>Ritmo y melodía</li>
                                 <li>Estructura de canciones improvisadas</li>
                             </ul>
-                            <p class="text-xl font-bold text-gray-500 mb-2">Cuota mensual $48.000</p>
+                            <p class="text-xl font-bold text-gray-900 mb-2">$48.000 / mes</p>
                             <p class="text-sm text-gray-500 mb-4">Horarios: Sábados de 10:00 a 14:00</p>
                             <div class="mt-auto">
-                                <a href="#contacto" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 mb-2 btn-transition inline-block text-center">
+                                <a href="#contacto" class="btn-secondary w-full mb-2 block">
                                     Inscríbeme
                                 </a>
-                                <button class="flip-card-btn w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-300 btn-transition" aria-label="Volver a información resumida">
+                                <button class="flip-card-btn btn-outline w-full" aria-label="Volver a información resumida">
                                     Volver
                                 </button>
                             </div>
@@ -678,18 +1332,19 @@
         </div>
     </section>
 
-    <section id="shows" class="py-12 sm:py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-6xl sm:text-6xl md:text-6xl font-bold --color-2 mb-4">FUNCIONES</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Disfruta de nuestros espectáculos de improvisación cada semana, renovando la cartelera constantemente.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Shows -->
+    <section id="shows" class="section bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title">Funciones</h2>
+            <p class="section-description">Disfruta de nuestros espectáculos de improvisación cada semana, renovando la cartelera constantemente.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Show 1 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Impro Match" class="w-full h-48 object-cover">
-                    <div class="p-4 sm:p-6">
+                <div class="show-card">
+                    <div class="show-card-img">
+                        <img src="https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Impro Match" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="show-card-content">
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="font-bold text-lg text-gray-900">Impro Match</h3>
@@ -698,19 +1353,22 @@
                             <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">Destacado</span>
                         </div>
                         <p class="text-gray-600 mb-4">Dos equipos de improvisadores compiten por el favor del público. Juegos, desafíos y mucha comedia.</p>
-                        <div class="flex justify-between items-center">
-                            <p class="text-gray-800 font-bold">$8.000</p>
-                            <a href="#contacto" class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                        <div class="show-card-footer">
+                            <p class="text-gray-900 font-bold">$8.000</p>
+                            <a href="#contacto" class="btn-primary">
                                 Reservar
                                 <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                
                 <!-- Show 2 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Teatro Espontáneo" class="w-full h-48 object-cover">
-                    <div class="p-4 sm:p-6">
+                <div class="show-card">
+                    <div class="show-card-img">
+                        <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Teatro Espontáneo" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="show-card-content">
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="font-bold text-lg text-gray-900">Teatro Espontáneo</h3>
@@ -719,19 +1377,22 @@
                             <span class="bg-purple-100 text-purple-800 text-xs font-bold px-2 py-1 rounded">Emocional</span>
                         </div>
                         <p class="text-gray-600 mb-4">Una experiencia teatral única donde las historias del público cobran vida a través de improvisaciones emotivas.</p>
-                        <div class="flex justify-between items-center">
-                            <p class="text-gray-800 font-bold">$7.500</p>
-                            <a href="#contacto" class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                        <div class="show-card-footer">
+                            <p class="text-gray-900 font-bold">$7.500</p>
+                            <a href="#contacto" class="btn-primary">
                                 Reservar
                                 <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                
                 <!-- Show 3 -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Impro Musical" class="w-full h-48 object-cover">
-                    <div class="p-4 sm:p-6">
+                <div class="show-card">
+                    <div class="show-card-img">
+                        <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Impro Musical" class="w-full h-full object-cover" loading="lazy">
+                    </div>
+                    <div class="show-card-content">
                         <div class="flex justify-between items-start mb-4">
                             <div>
                                 <h3 class="font-bold text-lg text-gray-900">Impro Musical</h3>
@@ -740,9 +1401,9 @@
                             <span class="bg-pink-100 text-pink-800 text-xs font-bold px-2 py-1 rounded">Musical</span>
                         </div>
                         <p class="text-gray-600 mb-4">Canciones y escenas musicales completamente improvisadas. Un espectáculo sorprendente y divertido.</p>
-                        <div class="flex justify-between items-center">
-                            <p class="text-gray-800 font-bold">$9.000</p>
-                            <a href="#contacto" class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition duration-300 btn-transition">
+                        <div class="show-card-footer">
+                            <p class="text-gray-900 font-bold">$9.000</p>
+                            <a href="#contacto" class="btn-primary">
                                 Reservar
                                 <i class="fas fa-ticket-alt ml-2" aria-hidden="true"></i>
                             </a>
@@ -753,15 +1414,14 @@
         </div>
     </section>
 
-    <section id="nosotros" class="py-12 sm:py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-6xl sm:text-6xl md:text-6xl font-bold --color-2 mb-4">QUIÉNES SOMOS</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Somos un espacio de formación y creación teatral especializado en improvisación, con 12 años de experiencia impulsando el desarrollo de esta disciplina en Chile.</p>
-            </div>
-
+    <!-- Nosotros -->
+    <section id="nosotros" class="section bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title">Quiénes Somos</h2>
+            <p class="section-description">Somos un espacio de formación y creación teatral especializado en improvisación, con 12 años de experiencia impulsando el desarrollo de esta disciplina en Chile.</p>
+            
             <div class="mb-16">
-                <h3 class="text-xl sm:text-2xl font-bold --color-2 mb-6 text-center">Nuestros valores</h3>
+                <h3 class="text-xl md:text-2xl font-bold text-center text-gray-900 mb-6">Nuestros valores</h3>
                 
                 <!-- Valores como tarjetas expandibles -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -807,87 +1467,85 @@
                 </div>
             </div>
 
-            <div>
-                <h3 class="text-xl sm:text-6xl font-bold --color-2 mb-6 text-center">NUESTRO EQUIPO</h3>
+            <h3 class="text-xl md:text-2xl font-bold text-center text-gray-900 mb-6">Nuestro Equipo</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Profesor 1 -->
+                <div class="professor-card">
+                    <img src="https://i.postimg.cc/kGCPKTJq/Federico-Castelacci.jpg" alt="Federico Castelacci" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Federico Castelacci</h4>
+                    <p class="text-blue-600">Director</p>
+                    <p class="text-gray-600 mt-2">Improvisador con más de 15 años de experiencia.</p>
+                    
+                    <!-- Overlay con información adicional -->    
+                    <div class="info-overlay">
+                        <h4 class="text-lg font-bold mb-1">Federico Castelacci</h4>
+                        <p class="mb-3">Director</p>
+                        <p class="text-sm">Formado en Argentina y Estados Unidos, ha dirigido espectáculos de improvisación en todo Latinoamérica. Profesor de actuación y director de la compañía desde 2010.</p>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram de Federico Castelacci"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Federico Castelacci"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Federico Castelacci"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profesor 2 -->
+                <div class="professor-card">
+                    <img src="https://i.postimg.cc/fW7NDQCL/Monica-Osben.jpg" alt="Monica Osben" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Monica Osben</h4>
+                    <p class="text-blue-600">Docente</p>
+                    <p class="text-gray-600 mt-2">Especialista en técnicas vocales y teatro musical.</p>
+                    
+                    <!-- Overlay con información adicional -->
+                    <div class="info-overlay">
+                        <h4 class="text-lg font-bold mb-1">Monica Osben</h4>
+                        <p class="mb-3">Docente</p>
+                        <p class="text-sm">Cantante y actriz con formación en teatro musical. Experta en improvisación vocal y creación de personajes. Integra el elenco desde 2015 y dirige el área de formación musical.</p>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram de Monica Osben"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Monica Osben"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Monica Osben"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Profesor 1 -->
-                    <div class="professor-card bg-gray-50 p-6 rounded-lg shadow-sm text-center">
-                        <img src="https://i.postimg.cc/kGCPKTJq/Federico-Castelacci.jpg" alt="Carlos Rodríguez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
-                        <h4 class="text-lg font-bold --color-2">FEDERICO CASTELACCI</h4>
-                        <p class="text-blue-600">Director</p>
-                        <p class="text-gray-600 mt-2">Improvisador con más de 15 años de experiencia.</p>
-                        
-                        <!-- Overlay con información adicional -->    
-                        <div class="info-overlay">
-                            <h4 class="text-lg font-bold mb-1">FEDERICO CASTELACCI</h4>
-                            <p class="mb-3">Director</p>
-                            <p class="text-sm">Formado en Argentina y Estados Unidos, ha dirigido espectáculos de improvisación en todo Latinoamérica. Profesor de actuación y director de la compañía desde 2010.</p>
-                            <div class="mt-3">
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-twitter"></i></a>
-                            </div>
+                <!-- Profesor 3 -->
+                <div class="professor-card">
+                    <img src="https://i.postimg.cc/kGCPKTJq/Federico-Castelacci.jpg" alt="Carlos Rodríguez" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Carlos Rodríguez</h4>
+                    <p class="text-blue-600">Profesor</p>
+                    <p class="text-gray-600 mt-2">Especializado en técnicas de improvisación narrativa.</p>
+                    
+                    <!-- Overlay con información adicional -->    
+                    <div class="info-overlay">
+                        <h4 class="text-lg font-bold mb-1">Carlos Rodríguez</h4>
+                        <p class="mb-3">Profesor</p>
+                        <p class="text-sm">Con formación en teatro clásico y moderno, ha desarrollado un método propio de improvisación narrativa. Parte del equipo desde 2014 y director del área de formación avanzada.</p>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram de Carlos Rodríguez"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Carlos Rodríguez"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Carlos Rodríguez"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
-
-                    <!-- Profesor 2 -->
-                    <div class="professor-card bg-gray-50 p-6 rounded-lg shadow-sm text-center">
-                        <img src="https://i.postimg.cc/fW7NDQCL/Monica-Osben.jpg" alt="Ana Martínez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
-                        <h4 class="text-lg font-bold --color-2">MONICA OSBEN</h4>
-                        <p class="text-blue-600">Docente</p>
-                        <p class="text-gray-600 mt-2">Especialista en técnicas vocales y teatro musical.</p>
-                        
-                        <!-- Overlay con información adicional -->
-                        <div class="info-overlay">
-                            <h4 class="text-lg font-bold mb-1">MONICA OSBEN</h4>
-                            <p class="mb-3">Docente</p>
-                            <p class="text-sm">Cantante y actriz con formación en teatro musical. Experta en improvisación vocal y creación de personajes. Integra el elenco desde 2015 y dirige el área de formación musical.</p>
-                            <div class="mt-3">
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-youtube"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-facebook"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Profesor 3 -->
-                    <div class="professor-card bg-gray-50 p-6 rounded-lg shadow-sm text-center">
-                        <img src="https://i.postimg.cc/kGy3cWG8/Pablo-Boraquevich.jpg" alt="Pedro Sánchez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
-                        <h4 class="text-lg font-bold --color-2">PABLO BORAQUEVICH</h4>
-                        <p class="text-blue-600">Coach</p>
-                        <p class="text-gray-600 mt-2">Especialista en improvisación narrativa y creativa.</p>
-                        
-                        <!-- Overlay con información adicional -->
-                        <div class="info-overlay">
-                            <h4 class="text-lg font-bold mb-1">PABLO BORAQUEVICH</h4>
-                            <p class="mb-3">Coach</p>
-                            <p class="text-sm">Escritor, guionista e improvisador. Ha participado en festivales internacionales de improvisación en España, México y Colombia. Dirige el formato de teatro espontáneo y narrativa improvisada.</p>
-                            <div class="mt-3">
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fas fa-globe"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Profesor 4 -->
-                    <div class="professor-card bg-gray-50 p-6 rounded-lg shadow-sm text-center">
-                        <img src="https://i.postimg.cc/SNDbYLwb/Rodrigo-Castro.jpg" alt="Laura Gómez" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
-                        <h4 class="text-lg font-bold --color-2">RODRIGO CASTRO</h4>
-                        <p class="text-blue-600">Coordinadora</p>
-                        <p class="text-gray-600 mt-2">Gestión de proyectos y coordinación académica.</p>
-                        
-                        <!-- Overlay con información adicional -->
-                        <div class="info-overlay">
-                            <h4 class="text-lg font-bold mb-1">RODRIGO CASTRO</h4>
-                            <p class="mb-3">Coordinadora</p>
-                            <p class="text-sm">Gestora cultural con experiencia en producción teatral y eventos artísticos. Responsable de la programación, coordinación de cursos y desarrollo de proyectos especiales de la escuela.</p>
-                            <div class="mt-3">
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="fab fa-linkedin"></i></a>
-                                <a href="#" class="text-white hover:text-gray-200 mx-1"><i class="far fa-envelope"></i></a>
-                            </div>
+                </div>
+                
+                <!-- Profesor 4 -->
+                <div class="professor-card">
+                    <img src="https://i.postimg.cc/fW7NDQCL/Monica-Osben.jpg" alt="Laura Gómez" class="object-cover" loading="lazy">
+                    <h4 class="text-lg font-bold text-gray-900 mt-2">Laura Gómez</h4>
+                    <p class="text-blue-600">Profesora</p>
+                    <p class="text-gray-600 mt-2">Experta en comedia física y clown.</p>
+                    
+                    <!-- Overlay con información adicional -->
+                    <div class="info-overlay">
+                        <h4 class="text-lg font-bold mb-1">Laura Gómez</h4>
+                        <p class="mb-3">Profesora</p>
+                        <p class="text-sm">Formada en la Escuela Internacional de Teatro Físico en París. Ha trabajado con diversas compañías en Europa y América Latina. Se especializa en técnicas de clown e improvisación corporal.</p>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram de Laura Gómez"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn de Laura Gómez"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" aria-label="Twitter de Laura Gómez"><i class="fab fa-twitter"></i></a>
                         </div>
                     </div>
                 </div>
@@ -895,305 +1553,294 @@
         </div>
     </section>
 
-    <section id="testimonios" class="py-12 sm:py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-2xl sm:text-6xl md:text-6xl font-bold --color-2 mb-4">QUE DICEN NUESTROS ALUMNOS</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Historias de quienes han vivido la experiencia de aprender y disfrutar de la improvisación con nosotros.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Testimonios -->
+    <section id="testimonios" class="section bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title">Testimonios</h2>
+            <p class="section-description">Lo que nuestros alumnos dicen sobre su experiencia en República de la Impro.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Testimonio 1 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Valentina Méndez" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h3 class="font-bold text-gray-900">Valentina Méndez</h3>
-                            <p class="text-sm text-blue-600">Alumna de Impro Nivel 1</p>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="mb-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
+                        <p class="italic text-gray-600 mb-4">"Ha sido una experiencia transformadora. No solo aprendí técnicas de improvisación sino que gané confianza en mí misma y conocí personas increíbles."</p>
                     </div>
-                    <div class="mb-4">
-                        <div class="text-yellow-400 flex mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                    <div class="testimonial-author">
+                        <div class="flex-shrink-0 mr-3">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Carolina Pérez" class="w-12 h-12 rounded-full object-cover" loading="lazy">
                         </div>
-                        <p class="text-gray-600 italic">"La improvisación ha cambiado mi vida, me ha ayudado a expresarme mejor y a combatir mi timidez. Los profesores son increíbles y el ambiente es muy acogedor. ¡Totalmente recomendado!"</p>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Carolina Pérez</h4>
+                            <p class="text-gray-600 text-sm">Alumna de Nivel 1 y 2</p>
+                        </div>
                     </div>
                 </div>
-
+                
                 <!-- Testimonio 2 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Matías Torres" class="w-12 h-12 rounded-full mr-4">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="mb-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="italic text-gray-600 mb-4">"Los profesores son excelentes y el ambiente es muy acogedor. He aplicado lo aprendido en mi trabajo diario, mejorando mi capacidad de comunicación y creatividad."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="flex-shrink-0 mr-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rodrigo Fernández" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-900">Matías Torres</h3>
-                            <p class="text-sm text-blue-600">Alumno de Impro Musical</p>
+                            <h4 class="font-bold text-gray-900">Rodrigo Fernández</h4>
+                            <p class="text-gray-600 text-sm">Alumno de Impro Musical</p>
                         </div>
                     </div>
-                    <div class="mb-4">
-                        <div class="text-yellow-400 flex mb-2">
+                </div>
+                
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="mb-4 text-yellow-400">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p class="text-gray-600 italic">"Siempre fui amante del teatro y la música, y encontrar un lugar donde unir ambas pasiones ha sido una experiencia maravillosa. Además de mejorar mis habilidades, he conocido personas increíbles y ahora formamos parte del elenco."</p>
+                        <p class="italic text-gray-600 mb-4">"Nunca pensé que podría actuar frente a un público, pero los ejercicios y la metodología de enseñanza me dieron las herramientas para superar mis miedos."</p>
                     </div>
-                </div>
-
-                <!-- Testimonio 3 -->
-                <div class="testimonial-card bg-white p-6 rounded-lg shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <img src="https://randomuser.me/api/portraits/women/87.jpg" alt="Daniela Fernández" class="w-12 h-12 rounded-full mr-4">
+                    <div class="testimonial-author">
+                        <div class="flex-shrink-0 mr-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="María José López" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                        </div>
                         <div>
-                            <h3 class="font-bold text-gray-900">Daniela Fernández</h3>
-                            <p class="text-sm text-blue-600">Alumna de Impro Nivel 3</p>
+                            <h4 class="font-bold text-gray-900">María José López</h4>
+                            <p class="text-gray-600 text-sm">Alumna de Nivel 1</p>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <div class="text-yellow-400 flex mb-2">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic">"Llevo tres años en República Impro y ha sido una de las mejores decisiones que he tomado. He crecido como artista pero también como persona. El ambiente es familiar y de constante apoyo. Recomendaría esta escuela a cualquiera que quiera divertirse mientras aprende."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="py-12 sm:py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-6xl sm:text-6xl md:text-6xl font-bold --color-2 mb-4">CONTÁCTANOS</h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">Estamos aquí para resolver tus dudas. Completa el formulario y te responderemos a la brevedad.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <!-- Contacto -->
+    <section id="contacto" class="section bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title">Contacto</h2>
+            <p class="section-description">¿Tienes alguna pregunta o quieres inscribirte en nuestros cursos? ¡Escríbenos!</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Formulario de contacto -->
-                <div class="bg-gray-50 rounded-lg shadow-sm p-6 contact-form-section" id="contact-form-container">
+                <div class="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Envíanos un mensaje</h3>
+                    
                     <form id="contact-form" class="space-y-4" action="https://formsubmit.co/macks.route@gmail.com" method="POST">
-                        <!-- Campos ocultos para configuración de formsubmit.co -->
-                        <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - República Impro">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_autoresponse" value="Gracias por contactar a República Impro. Hemos recibido tu mensaje y te responderemos a la brevedad.">
+                        <div>
+                            <label for="nombre" class="block mb-2 text-gray-700">Nombre completo</label>
+                            <input type="text" id="nombre" name="nombre" required class="w-full px-4 py-3 border border-gray-300 rounded-md" placeholder="Tu nombre">
+                        </div>
                         
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo <span class="text-red-500">*</span></label>
-                            <input type="text" id="name" name="name" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+                            <label for="email" class="block mb-2 text-gray-700">Correo electrónico</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-md" placeholder="tucorreo@ejemplo.com">
                         </div>
+                        
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
-                            <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Asunto <span class="text-red-500">*</span></label>
-                            <select id="subject" name="subject" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
-                                <option value="">Selecciona una opción</option>
-                                <option value="info_cursos">Información sobre cursos</option>
+                            <label for="asunto" class="block mb-2 text-gray-700">Asunto</label>
+                            <select id="asunto" name="asunto" required class="w-full px-4 py-3 border border-gray-300 rounded-md">
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="consulta_curso">Consulta sobre cursos</option>
+                                <option value="reserva_show">Reserva para shows</option>
                                 <option value="inscripcion">Inscripción a curso</option>
-                                <option value="reserva_show">Reserva para show</option>
-                                <option value="comentarios">Comentarios o sugerencias</option>
-                                <option value="otros">Otros</option>
+                                <option value="otro">Otro</option>
                             </select>
                         </div>
+                        
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensaje <span class="text-red-500">*</span></label>
-                            <textarea id="message" name="message" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required></textarea>
+                            <label for="mensaje" class="block mb-2 text-gray-700">Mensaje</label>
+                            <textarea id="mensaje" name="mensaje" required class="w-full px-4 py-3 border border-gray-300 rounded-md h-32" placeholder="Escribe tu mensaje..."></textarea>
                         </div>
+                        
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
-                                <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" required>
+                                <input id="terms" name="terms" type="checkbox" required class="w-4 h-4 border border-gray-300 rounded">
                             </div>
-                            <div class="ml-3 text-sm">
-                                <label for="terms" class="font-medium text-gray-700">Acepto los términos y condiciones <span class="text-red-500">*</span></label>
-                                <p class="text-gray-500">Al enviar este formulario, aceptas nuestra política de privacidad.</p>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300 btn-transition">
-                                Enviar mensaje
-                                <i class="fas fa-paper-plane ml-2" aria-hidden="true"></i>
-                            </button>    
-                        </div>
-                        <input type="hidden" name="_next" value="https://macks-dev.github.io/testingindex/">
-                    </form>
-                </div>
-
-                <!-- Información de contacto -->
-                <div class="bg-gray-50 rounded-lg shadow-sm p-6">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4">Información de contacto</h3>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-map-marker-alt text-blue-600"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 font-medium">Dirección:</p>
-                                <p class="text-gray-600">Carlos Valdovinos 123, Santiago, Chile</p>
-                            </div>
+                            <label for="terms" class="ml-2 text-gray-600 text-sm">
+                                Acepto los términos y condiciones y la política de privacidad
+                            </label>
                         </div>
                         
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-phone text-blue-600"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 font-medium">Teléfono:</p>
-                                <p class="text-gray-600">+56 9 1234 5678</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-envelope text-blue-600"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 font-medium">Email:</p>
-                                <p class="text-gray-600">macks.route@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-clock text-blue-600"></i>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-gray-900 font-medium">Horario de atención:</p>
-                                <p class="text-gray-600">Lunes a Viernes: 10:00 - 20:00 hrs<br>Sábados: 10:00 - 14:00 hrs</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6">
-                        <h4 class="text-gray-900 font-medium mb-2">Síguenos en redes sociales:</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800" aria-label="Facebook">
-                                <i class="fab fa-facebook-f fa-lg"></i>
-                            </a>
-                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800" aria-label="Instagram">
-                                <i class="fab fa-instagram fa-lg"></i>
-                            </a>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800" aria-label="YouTube">
-                                <i class="fab fa-youtube fa-lg"></i>
-                            </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800" aria-label="Twitter">
-                                <i class="fab fa-twitter fa-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                        <h4 class="text-blue-800 font-medium mb-2">¿Prefieres escribirnos directamente?</h4>
-                        <p class="text-gray-600 text-sm">También puedes enviarnos un correo a <a href="mailto:macks.route@gmail.com" class="text-blue-600 hover:underline">macks.route@gmail.com</a> y te responderemos a la brevedad.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-white pt-12 pb-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Columna 1: Acerca de -->
-                <div class="footer-section">
-                    <h3 class="text-lg font-bold mb-4">República de la Impro</h3>
-                    <p class="text-gray-400 mb-4">Escuela de improvisación teatral con más de una década formando actores e improvisadores en Santiago de Chile.</p>
-                    <div class="flex space-x-4 footer-links">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Facebook</span>
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Instagram</span>
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">YouTube</span>
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Twitter</span>
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Columna 2: Enlaces rápidos -->
-                <div class="footer-section">
-                    <h3 class="text-lg font-bold mb-4">Enlaces rápidos</h3>
-                    <ul class="space-y-2 footer-links">
-                        <li><a href="#inicio" class="text-gray-400 hover:text-white">Inicio</a></li>
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Cursos</a></li>
-                        <li><a href="#shows" class="text-gray-400 hover:text-white">Shows</a></li>
-                        <li><a href="#nosotros" class="text-gray-400 hover:text-white">Nosotros</a></li>
-                        <li><a href="#testimonios" class="text-gray-400 hover:text-white">Testimonios</a></li>
-                        <li><a href="#contacto" class="text-gray-400 hover:text-white">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Columna 3: Cursos -->
-                <div class="footer-section">
-                    <h3 class="text-lg font-bold mb-4">Nuestros cursos</h3>
-                    <ul class="space-y-2 footer-links">
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Impro Nivel 1</a></li>
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Impro Nivel 2</a></li>
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Impro Musical</a></li>
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Impro Dramática</a></li>
-                        <li><a href="#cursos" class="text-gray-400 hover:text-white">Talleres especiales</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Columna 4: Suscripción -->
-                <div class="footer-section">
-                    <h3 class="text-lg font-bold mb-4">Suscríbete a nuestro newsletter</h3>
-                    <p class="text-gray-400 mb-4">Recibe información sobre nuevos cursos, shows y eventos especiales.</p>
-                    <form class="space-y-2" action="https://formsubmit.co/macks.route@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="Nueva suscripción al newsletter - República Impro">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_autoresponse" value="Gracias por suscribirte al newsletter de República Impro. Te mantendremos informado de nuestras novedades.">
-                        <input type="hidden" name="tipo_formulario" value="newsletter">
-                        
-                        <div>
-                            <label for="footer-email" class="sr-only">Email</label>
-                            <input type="email" id="footer-email" name="email" placeholder="Tu email" class="w-full px-3 py-2 text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
-                            Suscribirme
+                        <button type="submit" class="btn-primary w-full">
+                            Enviar mensaje
+                            <i class="fas fa-paper-plane ml-2"></i>
                         </button>
                     </form>
                 </div>
+                
+                <!-- Información de contacto y mapa -->
+                <div>
+                    <div class="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Información de contacto</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-blue-600 mr-3">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Dirección</h4>
+                                    <p class="text-gray-600">Av. Providencia 1234, Providencia, Santiago</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-blue-600 mr-3">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Teléfono</h4>
+                                    <p class="text-gray-600">+56 9 8765 4321</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-blue-600 mr-3">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Correo electrónico</h4>
+                                    <p class="text-gray-600">contacto@republicaimpro.cl</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 text-blue-600 mr-3">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Horario de atención</h4>
+                                    <p class="text-gray-600">Lunes a viernes: 10:00 - 19:00<br>Sábado: 10:00 - 14:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-bold text-gray-800 mb-2">Síguenos en redes sociales</h4>
+                            <div class="flex space-x-3">
+                                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f fa-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors" aria-label="Instagram">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors" aria-label="Twitter">
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors" aria-label="YouTube">
+                                    <i class="fab fa-youtube fa-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Newsletter</h3>
+                        <p class="text-gray-600 mb-4">Suscríbete para recibir noticias y novedades sobre nuestros cursos y espectáculos.</p>
+                        
+                        <form class="flex flex-col sm:flex-row gap-2">
+                            <input type="email" placeholder="Tu correo electrónico" class="flex-grow px-4 py-2 border border-gray-300 rounded-md">
+                            <button type="submit" class="btn-primary whitespace-nowrap">
+                                Suscribirme
+                                <i class="fas fa-bell ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="footer-column-title">Acerca de nosotros</h4>
+                    <p class="text-gray-300 mb-4 text-sm">República de la Impro es una escuela de improvisación teatral con más de 12 años de experiencia formando a nuevos improvisadores y llevando espectáculos de calidad a Santiago de Chile.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-column-title">Enlaces rápidos</h4>
+                    <a href="#inicio" class="footer-link">Inicio</a>
+                    <a href="#cursos" class="footer-link">Cursos</a>
+                    <a href="#shows" class="footer-link">Shows</a>
+                    <a href="#nosotros" class="footer-link">Nosotros</a>
+                    <a href="#testimonios" class="footer-link">Testimonios</a>
+                    <a href="#contacto" class="footer-link">Contacto</a>
+                </div>
+                
+                <div>
+                    <h4 class="footer-column-title">Cursos</h4>
+                    <a href="#cursos" class="footer-link">Impro Nivel 1</a>
+                    <a href="#cursos" class="footer-link">Impro Nivel 2</a>
+                    <a href="#cursos" class="footer-link">Impro Musical</a>
+                    <a href="#contacto" class="footer-link">Pedir información</a>
+                </div>
+                
+                <div>
+                    <h4 class="footer-column-title">Contacto</h4>
+                    <p class="text-gray-300 mb-1 text-sm">Av. Providencia 1234, Providencia, Santiago</p>
+                    <p class="text-gray-300 mb-1 text-sm">+56 9 8765 4321</p>
+                    <p class="text-gray-300 mb-4 text-sm">contacto@republicaimpro.cl</p>
+                    <a href="#contacto" class="btn-outline text-white border-white hover:bg-white hover:text-gray-900 text-sm">Enviar mensaje</a>
+                </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-400 text-sm">© 2025 República de la Impro. Todos los derechos reservados.</p>
-                <div class="mt-2 text-gray-400 text-xs">
-                    <a href="#" class="hover:text-white mx-2">Política de privacidad</a>
-                    <a href="#" class="hover:text-white mx-2">Términos y condiciones</a>
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 República de la Impro. Todos los derechos reservados.</p>
+                
+                <div class="footer-bottom-links">
+                    <a href="#" class="footer-bottom-link">Términos y condiciones</a>
+                    <a href="#" class="footer-bottom-link">Política de privacidad</a>
                 </div>
             </div>
         </div>
     </footer>
-    
-    <!-- Success overlay -->
+
+    <!-- Overlay de éxito -->
     <div id="success-overlay" class="success-overlay">
         <div class="success-message">
-            <div class="text-green-600 mb-4">
-                <i class="fas fa-check-circle text-5xl"></i>
+            <div class="text-green-500 text-5xl mb-4">
+                <i class="fas fa-check-circle"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">¡Mensaje enviado correctamente!</h3>
-            <p class="text-gray-600 mb-4">Gracias por contactarnos. Te responderemos a la brevedad posible.</p>
-            <button id="close-success" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">¡Mensaje enviado!</h3>
+            <p class="text-gray-600 mb-4">Gracias por contactarnos. Te responderemos a la brevedad.</p>
+            <button id="close-success" class="btn-primary">
                 Cerrar
             </button>
         </div>
@@ -1203,7 +1850,11 @@
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            this.setAttribute('aria-expanded', !isExpanded);
             menu.classList.toggle('active');
+            menu.setAttribute('aria-hidden', isExpanded);
         });
 
         // Carousel functionality
@@ -1213,18 +1864,25 @@
         const totalSlides = slides.length;
 
         function showSlide(index) {
+            // Validate index
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            
+            // Remove active class from all slides and indicators
             slides.forEach((slide, i) => {
                 slide.classList.remove('active');
                 indicators[i].classList.remove('active');
                 indicators[i].setAttribute('aria-selected', 'false');
             });
             
+            // Add active class to current slide and indicator
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
             indicators[index].setAttribute('aria-selected', 'true');
             currentSlide = index;
         }
 
+        // Add event listeners to indicators
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => showSlide(index));
             indicator.addEventListener('keydown', (e) => {
@@ -1239,14 +1897,60 @@
             showSlide((currentSlide + 1) % totalSlides);
         }
 
+        function prevSlide() {
+            showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+        }
+
         // Auto change slides every 5 seconds
-        setInterval(nextSlide, 5000);
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        // Pause auto change on hover or focus
+        const carousel = document.querySelector('.carousel');
+        
+        carousel.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        carousel.addEventListener('focusin', () => {
+            clearInterval(slideInterval);
+        });
+        
+        carousel.addEventListener('focusout', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Keyboard navigation for carousel
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+            }
+        });
 
         // Flip cards functionality
         document.querySelectorAll('.flip-card-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const card = this.closest('.flip-card');
                 card.classList.toggle('flipped');
+                
+                // Toggle ARIA expanded state
+                const isFlipped = card.classList.contains('flipped');
+                this.setAttribute('aria-expanded', isFlipped);
+                
+                // Set focus to the back button if flipping to back
+                if (isFlipped) {
+                    const backButton = card.querySelector('.flip-card-back .flip-card-btn');
+                    if (backButton) {
+                        setTimeout(() => {
+                            backButton.focus();
+                        }, 400);
+                    }
+                }
             });
         });
 
@@ -1257,53 +1961,75 @@
 
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
-                // No hacemos e.preventDefault() para permitir el envío natural del formulario
-                
-                // Validación del formulario
+                // Validation
                 let valid = true;
                 const requiredFields = contactForm.querySelectorAll('[required]');
                 
+                // Clear previous error states
+                document.querySelectorAll('.error-message').forEach(el => el.remove());
+                document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+                
+                // Check required fields
                 requiredFields.forEach(field => {
                     if (!field.value.trim()) {
                         valid = false;
                         field.classList.add('input-error');
-                        e.preventDefault(); // Prevenir envío si hay error
-                    } else {
-                        field.classList.remove('input-error');
+                        
+                        // Add error message
+                        const errorMsg = document.createElement('p');
+                        errorMsg.className = 'error-message';
+                        errorMsg.textContent = 'Este campo es obligatorio';
+                        field.parentNode.appendChild(errorMsg);
+                        
+                        e.preventDefault();
                     }
                 });
                 
+                // Validate email format
                 const email = document.getElementById('email');
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (email.value && !emailRegex.test(email.value)) {
-                    valid = false;
-                    email.classList.add('input-error');
-                    e.preventDefault(); // Prevenir envío si hay error
+                if (email && email.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email.value)) {
+                        valid = false;
+                        email.classList.add('input-error');
+                        
+                        // Add error message
+                        const errorMsg = document.createElement('p');
+                        errorMsg.className = 'error-message';
+                        errorMsg.textContent = 'Por favor ingresa un email válido';
+                        email.parentNode.appendChild(errorMsg);
+                        
+                        e.preventDefault();
+                    }
                 }
                 
+                // If valid, show success message
                 if (valid) {
-                    // Mostrar mensaje de éxito antes de enviar
                     successOverlay.classList.add('active');
                     
-                    // Usamos setTimeout para dar tiempo a que el usuario vea el mensaje de éxito
-                    // antes de que el formulario se envíe
-                    e.preventDefault(); // Prevenimos temporalmente
-                    
+                    // Simulate form submission delay
+                    e.preventDefault();
                     setTimeout(() => {
-                        // Después de 2 segundos, enviamos el formulario programáticamente
                         contactForm.submit();
                     }, 2000);
+                } else {
+                    // Focus first error field
+                    const firstError = contactForm.querySelector('.input-error');
+                    if (firstError) {
+                        firstError.focus();
+                    }
                 }
             });
         }
 
+        // Close success overlay
         if (closeSuccessBtn) {
             closeSuccessBtn.addEventListener('click', function() {
                 successOverlay.classList.remove('active');
             });
         }
 
-        // Close the success overlay when clicking outside the message
+        // Close overlay when clicking outside
         if (successOverlay) {
             successOverlay.addEventListener('click', function(e) {
                 if (e.target === successOverlay) {
@@ -1311,36 +2037,6 @@
                 }
             });
         }
-
-        // Professor card spotlight effect
-        document.querySelectorAll('.professor-card').forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const spotlight = card.querySelector('.spotlight');
-                if (spotlight) {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    spotlight.style.left = x + 'px';
-                    spotlight.style.top = y + 'px';
-                }
-            });
-            
-            card.addEventListener('mouseenter', function() {
-                card.classList.add('active');
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                card.classList.remove('active');
-            });
-        });
-
-        // Close the success overlay when clicking outside the message
-        successOverlay.addEventListener('click', function(e) {
-            if (e.target === successOverlay) {
-                successOverlay.classList.remove('active');
-            }
-        });
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1354,10 +2050,13 @@
                     const mobileMenu = document.getElementById('mobile-menu');
                     if (mobileMenu.classList.contains('active')) {
                         mobileMenu.classList.remove('active');
+                        const menuButton = document.getElementById('mobile-menu-button');
+                        menuButton.setAttribute('aria-expanded', 'false');
+                        mobileMenu.setAttribute('aria-hidden', 'true');
                     }
                     
                     // Calculate offset to account for fixed header
-                    const headerOffset = 80;
+                    const headerOffset = 64;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                     
@@ -1368,6 +2067,48 @@
                 }
             });
         });
+        
+        // Header hide/show on scroll
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+        const scrollThreshold = 100;
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > scrollThreshold) {
+                if (scrollTop > lastScrollTop) {
+                    // Scrolling down
+                    header.classList.add('hidden');
+                } else {
+                    // Scrolling up
+                    header.classList.remove('hidden');
+                }
+            } else {
+                // At the top
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Lazy loading for images (fallback for browsers that don't support loading attribute)
+        if ('loading' in HTMLImageElement.prototype) {
+            // Browser supports the loading attribute
+        } else {
+            // Fallback for browsers that don't support loading attribute
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            img.src = img.dataset.src;
+                            observer.disconnect();
+                        }
+                    });
+                });
+                observer.observe(img);
+            });
+        }
     </script>
 </body>
 </html>
