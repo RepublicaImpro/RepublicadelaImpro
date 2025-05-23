@@ -382,6 +382,31 @@
             transform: translateY(-2px);
         }
 
+        /* Botón de cierre */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-2);
+            z-index: 2;
+        }
+
+        .close-btn:hover {
+            background: var(--color-4);
+            color: white;
+            transform: rotate(90deg);
+        }
+
         /* Estrella como elemento gráfico */
         .star-graphic {
             width: 30px;
@@ -860,6 +885,19 @@
             background-color: var(--color-2);
             color: white;
             transform: scale(1.1);
+        }
+
+        /* Estados del overlay */
+        .info-overlay.closed-overlay {
+            opacity: 0 !important;
+            transform: translateY(100%) !important;
+            pointer-events: none;
+        }
+
+        /* Resetear estado al hacer hover */
+        .professor-card:hover .info-overlay:not(.closed-overlay) {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* === MEJORAS PARA LA SECCIÓN DE VALORES === */
@@ -1449,6 +1487,9 @@
                     
                     <!-- Overlay con información adicional -->    
                     <div class="info-overlay">
+                        <button class="close-btn" aria-label="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
                         <h4 class="text-lg font-bold mb-1">Federico Castelacci</h4>
                         <p class="mb-3">Comunicación y Difusión</p>
                         <p class="text-sm">Comenzó su formación en improvisación teatral en 2008, especializándose en máscara neutra, máscara expresiva, bufón y Commedia dell’arte. Amplió su trabajo actoral explorando el melodrama, la tragedia, el teatro físico, el stand-up y la escritura de guión.
@@ -1470,6 +1511,9 @@ En 2012 cofundó la compañía Los Paquidermos, con la que creó el espectáculo
                     
                     <!-- Overlay con información adicional -->
                     <div class="info-overlay">
+                        <button class="close-btn" aria-label="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
                         <h4 class="text-lg font-bold mb-1">Monica Osben</h4>
                         <p class="mb-3">Administración General y Producción</p>
                         <p class="text-sm">Abogada y actriz improvisadora desde el año 2012. Estudió Pedagogía Teatral con la Balanza Teatro. Ha participado y creado diversos espectáculos para infancias y adult@s, ganando el Premio Clap por obra infantil mas vista con el show "La Patrulla de la Imaginación". También ha participado en festivales de impro en Argentina y Uruguay. Se ha especializado en improvisación para infancias y en el estudio de la voz para la impro.</p>
@@ -1490,6 +1534,9 @@ En 2012 cofundó la compañía Los Paquidermos, con la que creó el espectáculo
                     
                     <!-- Overlay con información adicional -->
                     <div class="info-overlay">
+                        <button class="close-btn" aria-label="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
                         <h4 class="text-lg font-bold mb-1">Pablo Boraquevich</h4>
                         <p class="mb-3">Dirección General Artística</p>
                         <p class="text-sm">Estudió Cine en la Universidad de Buenos Aires y Teatro en el Centro Cultural General San Martín. Hace Impro desde el 2003 y tiene más de 4000 funciones en su haber en 90 formatos distintos. Creó 29 formatos de improvisación teatral de distinto tipo. 
@@ -1512,6 +1559,9 @@ Escribió su primer libro sobre narrativa improvisada llamado “LUZ IMPRO ACCI�
                     
                     <!-- Overlay con información adicional -->
                     <div class="info-overlay">
+                        <button class="close-btn" aria-label="Cerrar">
+                            <i class="fas fa-times"></i>
+                        </button>
                         <h4 class="text-lg font-bold mb-1">Rodrigo Castro</h4>
                         <p class="mb-3">Dirección Académica</p>
                         <p class="text-sm">Magíster en Tecnología Educativa y Magíster en Biomecánica, especialista en Análisis del Movimiento Humano. Diplomado en Neuroeducación. Kinesiólogo y docente universitario con 20 años de experiencia en docencia, investigación y diseño curricular en entornos virtuales de aprendizaje.
@@ -1536,7 +1586,28 @@ Actor improvisador con 12 años de trayectoria. Diplomado en Clown e Improvisaci
                 <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
             </svg>
         </div>
-            
+        
+        
+        <!-- Hook Section -->
+        <section class="section bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6">
+                    ¿Te atreves a ser la mejor versión de ti mismo? Aquí, cada improvisación es una oportunidad de <strong>transformarte</strong> y conectar auténticamente con otros a través del <strong>arte y el juego</strong>.</h2>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Separador con estrella -->
+        <div class="separator-container">
+            <svg class="separator" width="100%" height="50" viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+                <line x1="0" y1="25" x2="340" y2="25" stroke="#bc4a25" stroke-width="2"/>
+                <g transform="translate(400, 25)">
+                    <polygon points="0,-20 4.8,-6.2 19.4,-6.2 7.3,2.3 12.1,16.2 0,7.7 -12.1,16.2 -7.3,2.3 -19.4,-6.2 -4.8,-6.2" fill="#bc4a25"/>
+                </g>
+                <line x1="460" y1="25" x2="800" y2="25" stroke="#bc4a25" stroke-width="2"/>
+            </svg>
+        </div>
+        
         <!-- Sección de valores centrada y mejorada -->
         <div class="max-w-4xl mx-auto mb-16">
             <h3 class="text-xl md:text-2xl font-bold text-center text-blue-700 mb-8">NUESTROS VALORES</h3>
@@ -2087,6 +2158,21 @@ Actor improvisador con 12 años de trayectoria. Diplomado en Clown e Improvisaci
             this.setAttribute('aria-expanded', !isExpanded);
             menu.classList.toggle('active');
             menu.setAttribute('aria-hidden', isExpanded);
+        });
+
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // ¡Importante!
+                const overlay = e.target.closest('.info-overlay');
+                
+                // Añadir clase de cierre
+                overlay.classList.add('closed-overlay');
+                
+                // Remover clase después de 400ms (tiempo de la animación)
+                setTimeout(() => {
+                    overlay.classList.remove('closed-overlay');
+                }, 400);
+            });
         });
 
         // Carousel functionality
