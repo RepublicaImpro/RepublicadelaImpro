@@ -993,9 +993,8 @@
             transition: opacity 0.4s ease, transform 0.4s ease;
             position: absolute;
             bottom: 1.5rem;
-            right: 1.5rem;
-            
-            /* BACKGROUND DEGRADADO */
+            left: 50%; /* Centrado horizontal */
+            transform: translateX(-50%); /* Centrado horizontal */
             background: linear-gradient(
                 135deg, 
                 rgba(255, 255, 255, 0.85) 0%, 
@@ -1005,26 +1004,28 @@
             padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            
-            /* Alineación del texto */
-            text-align: right;
-            
-            /* PERMITIR QUE SE AJUSTE AL CONTENIDO */
-            width: auto;
-            min-width: 120px;
-            max-width: 80%;
+            text-align: center; /* Centrar texto */
+            width: 80%; /* Ancho fijo para mejor control */
+            max-width: 300px;
         }
 
-        /* Estilos para el nombre del profesor */
         .professor-basic-info h3 {
             font-size: 1rem;
             font-weight: 700;
             color: var(--color-2);
-            margin: 0 0 0.25rem 0;
+            margin: 0 0 0.15rem 0; /* Reducido el margen inferior */
             line-height: 1.2;
-            
-            /* PERMITIR NOMBRE COMPLETO EN UNA LÍNEA */
-            white-space: nowrap;
+            white-space: nowrap; /* Asegurar que el nombre quede en una línea */
+            display: block; /* Forzar que ocupe toda la línea */
+            width: 100%; /* Ancho completo */
+        }
+
+        .professor-basic-info p {
+            color: var(--color-4);
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: block; /* Forzar que ocupe toda la línea */
+            width: 100%; /* Ancho completo */
         }
 
         /* Mantener el comportamiento de hover */
@@ -1675,8 +1676,8 @@
                 <!-- Profesor 1 -->
                 <div class="professor-card profesor-1">
                     <div class="professor-basic-info">
-                        <h3 class="text-lg font-bold text-white mb-2">Federico Castelacci</h3>
-                        <p class="--color-4 font-medium">Comunicación y Difusión</p>
+                        <h3>Federico Castelacci</h3>
+                        <p>Comunicación y Difusión</p>
                     </div>
                     
                     <!-- Overlay con información adicional -->    
